@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+<h2 class="fs-2 text mt-3 mb-3">CRUD</h2>
+<a href="{{path('create') }}" type="button" class="btn btn-primary mb-3">Add Todo</a>
+<table class="table">
+ {% for message in app.flashes('notice') %}
+            <div class='alert alert-success mt-4 mb-b'>
+                {{message}}
+            </div>
+       {% endfor %}
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Content</th>
+      <th scope="col">Action </th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for data in list %}
+    <tr>
+      <th scope="row">{{data.id}}</th>
+      <td>{{data.title}}</td>
+      <td>{{data.content}}</td>
+      <td> <a href="{{path('update',{'id':data.id}) }}" class="btn btn-warning">Update</a></td>
+      <td> <a href="{{path('delete',{'id':data.id}) }}" class="btn btn-danger">Delete</a></td>
+ 
+    </tr>
+  
+  {% endfor %}
+    </tbody>
+</table>
+
+</div>
+{% endblock %}
